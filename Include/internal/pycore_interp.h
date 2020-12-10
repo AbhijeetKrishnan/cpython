@@ -64,8 +64,8 @@ struct _Py_unicode_state {
 
 /* interpreter state */
 
-#define _PY_NSMALLPOSINTS           257
-#define _PY_NSMALLNEGINTS           5
+#define _PY_NSMALLPOSINTS           0
+#define _PY_NSMALLNEGINTS           0
 
 // The PyInterpreterState typedef is in Include/pystate.h.
 struct _is {
