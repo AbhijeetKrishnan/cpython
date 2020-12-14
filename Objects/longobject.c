@@ -42,6 +42,7 @@ get_small_int(sdigit ival)
     assert(IS_SMALL_INT(ival));
     PyThreadState *tstate = _PyThreadState_GET();
     PyObject *v = (PyObject*)tstate->interp->small_ints[ival + NSMALLNEGINTS];
+    tstate->interp->small_ints_freq[ival + NSMALLNEGINTS]++;
     Py_INCREF(v);
     return v;
 }
@@ -5768,6 +5769,7 @@ _PyLong_Init(PyThreadState *tstate)
         v->ob_digit[0] = (digit)abs(ival);
 
         tstate->interp->small_ints[i] = v;
+        tstate->interp->small_ints_freq[i] = 0;
     }
 #endif
 

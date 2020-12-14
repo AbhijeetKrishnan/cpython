@@ -36,6 +36,10 @@ gmon.out
 .mypy_cache/
 .pytest_cache/
 
+venv/
+*.log
+*.json
+
 *.exe
 !Lib/distutils/command/*.exe
 

@@ -64,8 +64,8 @@ struct _Py_unicode_state {
 
 /* interpreter state */
 
-#define _PY_NSMALLPOSINTS           0
-#define _PY_NSMALLNEGINTS           0
+#define _PY_NSMALLPOSINTS           1001
+#define _PY_NSMALLNEGINTS           1000
 
 // The PyInterpreterState typedef is in Include/pystate.h.
 struct _is {
@@ -153,6 +153,7 @@ struct _is {
        -_PY_NSMALLNEGINTS (inclusive) to _PY_NSMALLPOSINTS (not inclusive).
     */
     PyLongObject* small_ints[_PY_NSMALLNEGINTS + _PY_NSMALLPOSINTS];
+    int small_ints_freq[_PY_NSMALLNEGINTS + _PY_NSMALLPOSINTS];
 #endif
 };
 

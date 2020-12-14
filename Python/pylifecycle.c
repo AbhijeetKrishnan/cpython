@@ -1360,6 +1360,16 @@ Py_FinalizeEx(void)
     // Make any remaining pending calls.
     _Py_FinishPendingCalls(tstate);
 
+    FILE *log = fopen("log.log", "a");
+    fprintf(log, "%s\n", Py_GetProgramFullPath());
+
+    for (Py_ssize_t i=0; i < _PY_NSMALLNEGINTS + _PY_NSMALLPOSINTS; i++) {
+        sdigit ival = (sdigit)i - _PY_NSMALLNEGINTS;
+        fprintf(log, "%d %d\n", ival, tstate->interp->small_ints_freq[i]);
+    }
+
+    fclose(log);
+
     /* The interpreter is still entirely intact at this point, and the
      * exit funcs may be relying on that.  In particular, if some thread
      * or exit func is still waiting to do an import, the import machinery
